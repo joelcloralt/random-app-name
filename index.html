@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Generate random name</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    #appName {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+  </style>
+  <script>
+    async function generateRandomName() {
+      const response = await fetch('/.netlify/functions/random-app-name');
+      const data = await response.json();
+      document.getElementById('appName').textContent = data.appName;
+    }
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <h1 id="appName"></h1>
+    <button onclick="generateRandomName()">Generate Random Name</button>
+  </div>
+</body>
+
+</html>
